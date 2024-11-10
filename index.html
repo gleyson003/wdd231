@@ -10,12 +10,15 @@
 </head>
 <body>
     <header>
-        <img class="img1" src="images/me.png" alt="My photo">
-        <h1>
-            Gleyson Douglas Sampaio Lopes
-        </h1>      
-        <nav>
-            <a href="https://www.linkedin.com/in/gleyson-lopes-7992a1176/" target="_blank">Home</a>
+        <div class="titlePage">
+            <img class="titleImage" src="images/me.png" alt="My photo">
+            <h1>
+                Gleyson Douglas Sampaio Lopes
+            </h1>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>      
+        <nav id="menu">
+            <a href="index.html" target="_blank">Home</a>
             <a href="" target="_blank">Chamber</a>
             <a href="https://github.com/gleyson003" target="_blank">GitHub Profile</a>
             <a href="https://www.linkedin.com/in/gleyson-lopes-7992a1176/" target="_blank">LinkedInd</a>
@@ -32,24 +35,18 @@
         </section>
         <section class="card">
             <h3>Belém-PA, Brasil</h3>
-            <img class="img2" src="images/floresta-amazonica.png" alt="Amazon Florest Brazil">
+            <img class="img" src="images/floresta-amazonica.png" alt="Amazon Florest Brazil">
             <P>Amazon Forest</P>
         </section>
         <section class="card cardColumn">
             <h3>Web and Computer Programing Certificate</h3>
+            <p class="credits">Credits: 12</p>
             <div>
-                <button>All</button>
-                <button>CSE</button>
-                <button>WDD</button>
+                <button id="buttonAll">All</button>
+                <button id="buttonCSE">CSE</button>
+                <button id="buttonWDD">WDD</button>
             </div>
-            <ul id="course-list">
-                <a class="course-1">CSE 110</a>
-                <a class="course-1">WDD 130</a>
-                <a class="course-1">CSE 111</a>
-                <a class="course">CSE 210</a>
-                <a class="course">WDD 131</a>
-                <a class="course">WDD 231</a>
-            </ul>
+            <ul id="course-list"></ul>
         </section>            
     </main>
     <footer>
