@@ -8,7 +8,7 @@ document.getElementById('menuToggle').addEventListener('click', function() {
 async function fetchCompanies() {
     try {
         
-        const response = await fetch('https://gleyson003.github.io/wdd231/chamber/data/members.json'); 
+        const response = await fetch('data/members.json'); 
         const data = await response.json(); 
         
         const gridContainer = document.querySelector('.grid');
