@@ -5,11 +5,10 @@ document.getElementById('menuToggle').addEventListener('click', function() {
 
 
 //Companies Cards
-// Função para buscar as informações das organizações e criar os cards
 async function fetchCompanies() {
     try {
         
-        const response = await fetch('/chamber/data/members.json'); 
+        const response = await fetch('chamber/data/members.json'); 
         const data = await response.json(); 
         
         const gridContainer = document.querySelector('.grid');
@@ -50,8 +49,6 @@ async function fetchCompanies() {
 }
 
 document.addEventListener('DOMContentLoaded', fetchCompanies);
-
-
 
 
 //Filter function
