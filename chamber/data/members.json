@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Sococo",
+        "adresse": "R. B, 492-728 - Distrito Industrial, Ananindeua - PA",
+        "phone": "+55 091 4006-3010",
+        "website": "https://www.sococo.com.br/",
+        "icon": "sococo.png",
+        "membership": "3"
+    },
+
+    {
+        "name": "Coca Cola",
+        "adresse": "Rod. Augusto Montenegro, 5301 - Parque Verde, Belém - PA, 66635-110",
+        "phone": "+55 091 4005-6660",
+        "website": "https://www.coca-cola.com.br/",
+        "icon": "cocacola.png",
+        "membership": "3"
+    },
+    
+    {
+        "name": "Formosa",
+        "adresse": "Avenida Augusto Montenegro, km 7 S/N - Parque Verde, Belém - PA, 66635-110",
+        "phone": "+55 091 3348-9007",
+        "website": "https://www.formosa.com.br/",
+        "icon": "formosa.png",
+        "membership": "1"
+    },
+
+    {
+        "name": "Sococo",
+        "adresse": "R. B, 492-728 - Distrito Industrial, Ananindeua - PA",
+        "phone": "+55 091 4006-3010",
+        "website": "https://www.sococo.com.br/",
+        "icon": "sococo.png",
+        "membership": "gold"
+    },
+
+    {
+        "name": "Sococo",
+        "adresse": "R. B, 492-728 - Distrito Industrial, Ananindeua - PA",
+        "phone": "+55 091 4006-3010",
+        "website": "https://www.sococo.com.br/",
+        "icon": "sococo.png",
+        "membership": "gold"
+    },
+
+    {
+        "name": "Sococo",
+        "adresse": "R. B, 492-728 - Distrito Industrial, Ananindeua - PA",
+        "phone": "+55 091 4006-3010",
+        "website": "https://www.sococo.com.br/",
+        "icon": "sococo.png",
+        "membership": "gold"
+    },
+
+    {
+        "name": "Sococo",
+        "adresse": "R. B, 492-728 - Distrito Industrial, Ananindeua - PA",
+        "phone": "+55 091 4006-3010",
+        "website": "https://www.sococo.com.br/",
+        "icon": "sococo.png",
+        "membership": "gold"
+    }
+    
+]

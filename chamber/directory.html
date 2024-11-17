@@ -9,12 +9,64 @@
     <meta property="og:image" content="chamber/images/favicon" />
     <meta property="og:url" content="https://gleyson003.github.io/wdd231/" />
     <link rel="icon" href="/chamber/images/gc_favicon.png">
+    <link rel="stylesheet" href="styles/directory_brief.css">
+    <link rel="stylesheet" href="styles/directory_middle.css">
+    <link rel="stylesheet" href="styles/directory_small.css">
+    <link rel="stylesheet" href="styles/directory_mobile.css">
     <script src="scripts/directory.js" defer></script>
-    <title>Great Chamber</title>
+    <title>Great Chance</title>
 </head>
 <body>
+    <header>
+        <img class="titleImage" src="images/gc_logo.png" alt="My photo">
+        <h1>Great Chance</h1>
+        <h4>Chamber of Commerce</h4>    
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <nav id="menu">
+            <a href="directory.html" target="_blank">Home</a>
+            <a href="" target="_blank">Discover</a>
+            <a href="" target="_blank">Business Directory</a>
+            <a href="" target="_blank">Join</a>
+        </nav>
+    </header>
+    <main>
+        <div class="companyFilter">
+            <button id="grid">⏹️Grid</button>
+            <button id="list">📄List</button>
+        </div>
+        <hr>
+        <article class="grid"></article>
+    </main>
     <footer>
-        <p>&copy; <span id="currentyear"></span> Gleyson Lopes - Belém-PA, Brasil | <span id="lastModified"></span></p>
+        <div>
+            <p>
+                <b>Great Chance</b><br>
+                177 Passagem Natalina<br>
+                Belém - Pará, Brazil 66645-502<br>
+                info@greatchance.org<br>
+                +55 91 98262-8735
+            </p>
+        </div>
+        <div class="social">
+            <a href="https://www.facebook.com/gleyson.douglaslopes.9/?locale=pt_BR" target="_blank">
+                <img src="images/youtube.png" alt="fb icon">
+            </a>
+            <a href="https://twitter.com" target="_blank">
+                <img src="images/twitter.png" alt="twitter icon">
+            </a>
+            <a href="https://www.linkedin.com/in/gleyson-lopes-7992a1176/" target="_blank">
+                <img src="images/linkedin.png" alt="instagram icon">
+            </a>
+        </div>
+        <div>
+            <p>
+                WDD231 Class Project 
+                <br>Gleyson Douglas Sampaio Lopes
+                <br>&copy; <span id="currentyear"></span>
+                Great Chance
+                <br><span id="lastModified"></span>
+            </p>
+        </div>
     </footer>
 </body>
 </html>
