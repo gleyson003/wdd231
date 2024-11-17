@@ -1,20 +1,20 @@
 [
     {
-        "name": "Sococo",
-        "adresse": "R. B, 492-728 - Distrito Industrial, Ananindeua - PA",
-        "phone": "+55 091 4006-3010",
-        "website": "https://www.sococo.com.br/",
-        "icon": "sococo.png",
-        "membership": "3"
-    },
-
-    {
         "name": "Coca Cola",
         "adresse": "Rod. Augusto Montenegro, 5301 - Parque Verde, Belém - PA, 66635-110",
         "phone": "+55 091 4005-6660",
         "website": "https://www.coca-cola.com.br/",
         "icon": "cocacola.png",
         "membership": "3"
+    },
+
+    {
+        "name": "Gerdau",
+        "adresse": "Rua Distrito Industrial VP2, setor A, Quadra 4 -S/N - Distrito Industrial, Ananindeua - PA, 67035-330",
+        "phone": "+55 091 3214-1400",
+        "website": "https://mais.gerdau.com.br/",
+        "icon": "gerdau.png",
+        "membership": "1"
     },
     
     {
@@ -27,12 +27,12 @@
     },
 
     {
-        "name": "Sococo",
-        "adresse": "R. B, 492-728 - Distrito Industrial, Ananindeua - PA",
-        "phone": "+55 091 4006-3010",
-        "website": "https://www.sococo.com.br/",
-        "icon": "sococo.png",
-        "membership": "gold"
+        "name": "Senac",
+        "adresse": "Av. Serzedelo Corrêa, 279 - Nazaré, Belém - PA, 66035-400",
+        "phone": "+55 0800 701 4492",
+        "website": "https://www.pa.senac.br/",
+        "icon": "senac.png",
+        "membership": "2"
     },
 
     {
@@ -41,25 +41,24 @@
         "phone": "+55 091 4006-3010",
         "website": "https://www.sococo.com.br/",
         "icon": "sococo.png",
-        "membership": "gold"
+        "membership": "3"
     },
 
     {
-        "name": "Sococo",
-        "adresse": "R. B, 492-728 - Distrito Industrial, Ananindeua - PA",
-        "phone": "+55 091 4006-3010",
-        "website": "https://www.sococo.com.br/",
-        "icon": "sococo.png",
-        "membership": "gold"
-    },
-
-    {
-        "name": "Sococo",
-        "adresse": "R. B, 492-728 - Distrito Industrial, Ananindeua - PA",
-        "phone": "+55 091 4006-3010",
-        "website": "https://www.sococo.com.br/",
-        "icon": "sococo.png",
-        "membership": "gold"
-    }
+        "name": "It Center",
+        "adresse": "Av. Sen. Lemos, 3153 - Sacramenta, Belém - PA, 66120-000",
+        "phone": "+55 091 3201-2000",
+        "website": "https://itcenter.com.br/",
+        "icon": "itCenter.png",
+        "membership": "3"
+    },    
     
+    {
+        "name": "Unimed Belém",
+        "adresse": "Tv. Curuzú, 2212 - Marco, Belém - PA, 66085-823",
+        "phone": "+55 091 4009-5000",
+        "website": "https://www.unimed.coop.br/site/web/unimedbelem",
+        "icon": "unimed.png",
+        "membership": "2"
+    }
 ]

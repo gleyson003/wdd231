@@ -42,6 +42,10 @@
         grid-template-columns: repeat(1, 1fr);
     }
 
+    .grid a {
+        font-size: 2.5vw;
+    }
+
     .social img {
         border-radius: 5px;
         width: 30px;

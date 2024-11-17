@@ -24,6 +24,10 @@
         font-size: 1.2rem;
     }
 
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .social img {
         border-radius: 15px;
         width: 50px;
