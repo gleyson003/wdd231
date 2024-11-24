@@ -7,45 +7,52 @@ document.getElementById('menuToggle').addEventListener('click', function() {
 //Companies Cards
 async function fetchCompanies() {
     try {
-        
-        const response = await fetch('data/members.json'); 
-        const data = await response.json(); 
-        
         const gridContainer = document.querySelector('.grid');
         
-       
-        gridContainer.innerHTML = '';
-
-        
-        data.forEach(company => {
+        if (gridContainer != null) {
+            const response = await fetch('data/members.json');
             
-            const card = document.createElement('section');
-            card.classList.add('company-card'); 
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            gridContainer.innerHTML = '';
 
-            const icon = document.createElement('img');
-            icon.src = `images/companies_logos/${company.icon}`; 
-            icon.alt = company.name;
-            card.appendChild(icon);
-
-            const address = document.createElement('p');
-            address.textContent = `Adress: ${company.adresse}`;
-            card.appendChild(address);
-
-            const phone = document.createElement('p');
-            phone.textContent = `Phone: ${company.phone}`;
-            card.appendChild(phone);
-
-            const website = document.createElement('a');
-            website.href = company.website;
-            website.target = '_blank';
-            website.textContent = company.website;
-            card.appendChild(website);
-
-            gridContainer.appendChild(card);
-        });
+            data.forEach(company => {
+                const card = createCompanyCard(company);
+                gridContainer.appendChild(card);
+            });
+        }
     } catch (error) {
         console.error("Erro ao carregar os dados das empresas:", error);
     }
+}
+
+function createCompanyCard(company) {
+    const card = document.createElement('section');
+    card.classList.add('company-card');
+
+    const icon = document.createElement('img');
+    icon.src = `images/companies_logos/${company.icon}`;
+    icon.alt = company.name;
+    card.appendChild(icon);
+
+    const address = document.createElement('p');
+    address.textContent = `${company.address}`;
+    card.appendChild(address);
+
+    const phone = document.createElement('p');
+    phone.textContent = `Phone: ${company.phone}`;
+    card.appendChild(phone);
+
+    const website = document.createElement('a');
+    website.href = company.website;
+    website.target = '_blank';
+    website.textContent = company.website;
+    card.appendChild(website);
+
+    return card;
 }
 
 document.addEventListener('DOMContentLoaded', fetchCompanies);
@@ -56,18 +63,184 @@ const gridbutton = document.querySelector("#grid");
 const listbutton = document.querySelector("#list");
 const display = document.querySelector("article");
 
-gridbutton.addEventListener("click", () => {
-	display.classList.add("grid");
-	display.classList.remove("list");
-});
+if (gridbutton) {
+        gridbutton.addEventListener("click", () => {
+	    display.classList.add("grid");
+    	display.classList.remove("list");
+    });
+}
 
-listbutton.addEventListener("click", showList);
+if (listbutton) {
+    listbutton.addEventListener("click", showList);   
+}
+
 
 function showList() {
 	display.classList.add("list");
 	display.classList.remove("grid");
 }
 
+//API Weather
+const apiKey = "5ca622b2540cfdbfae0a3d45bc3af423";
+const city = "Belém, BR";
+const units = "metric"; // (°C)
+const lang = "en";      // Language
+const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=${units}&lang=${lang}&appid=${apiKey}`;
+const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&units=${units}&lang=${lang}&appid=${apiKey}`;
+
+async function fetchWeatherData() {
+    try {
+        // Get Current Weather
+        const currentWeatherResponse = await fetch(currentWeatherUrl);
+        const currentWeatherData = await currentWeatherResponse.json();
+        
+        // Save in variables
+        const maxTemp = Math.round(currentWeatherData.main.temp_max);
+        const minTemp = Math.round(currentWeatherData.main.temp_min);
+        const humidity = currentWeatherData.main.humidity;
+        const sunrise = new Date(currentWeatherData.sys.sunrise * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        const sunset = new Date(currentWeatherData.sys.sunset * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        const weatherIcon = currentWeatherData.weather[0].icon;
+        const weatherIconUrl = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
+
+        //Set Weather Icon
+        document.getElementById('weatherIcon').src = weatherIconUrl;
+        
+        //Set weather informations
+        const gridCurrent = document.querySelector('.currentParagraphs');
+
+        const currentTemperature = document.createElement('p');
+        currentTemperature.textContent = `${Math.round(currentWeatherData.main.temp)} °C`;
+        const currentWeatherDescription = document.createElement('p');
+        currentWeatherDescription.textContent = currentWeatherData.weather[0].description;
+
+        const tempMax = document.createElement('p');
+        tempMax.textContent = `High: ${maxTemp} °C`;
+        const tempMin = document.createElement('p');
+        tempMin.textContent = `Low: ${minTemp} °C`;
+
+        const hum = document.createElement('p');
+        hum.textContent = `Humidity: ${humidity}%`;
+        const rise = document.createElement('p');
+        rise.textContent = `Sunrise: ${sunrise}`;
+
+        const set = document.createElement('p');
+        set.textContent = `Sunset: ${sunset}`;
+        
+        gridCurrent.appendChild(currentTemperature);
+        gridCurrent.appendChild(currentWeatherDescription);
+        gridCurrent.appendChild(tempMax);
+        gridCurrent.appendChild(tempMin);
+
+        gridCurrent.appendChild(hum);
+        gridCurrent.appendChild(rise);
+        gridCurrent.appendChild(set);
+        
+        // Next three days forecast
+        const forecastResponse = await fetch(forecastUrl);
+        const forecastData = await forecastResponse.json();
+        const forecastParagraphs = document.querySelector('.forecastParagraphs');
+        const dailyForecasts = forecastData.list.filter((item, index) => index % 8 === 0).slice(0, 3);
+
+        dailyForecasts.forEach((forecast, index) => {
+            const date = new Date(forecast.dt * 1000).toLocaleDateString('en-US', { weekday: 'long' });
+            const temp = Math.round(forecast.main.temp);
+
+            const setForecast = document.createElement('p');
+            setForecast.textContent = `${date}: ${temp}°C`;
+
+            forecastParagraphs.appendChild(setForecast);
+        });
+    } catch (error) {
+        console.error("Error fetching weather data:", error);
+    }
+}
+// Call the funtion
+fetchWeatherData();
+
+//Spotlights
+async function fetchAndDisplayClients() {
+    try {
+        const gridContainer = document.querySelector('.spotlights');
+        
+        if (gridContainer != null) {
+            const response = await fetch('data/members.json');
+
+            if (!response.ok) {
+                throw new Error('Falha ao carregar os dados');
+            }
+
+            gridContainer.innerHTML = '';
+            const members = await response.json();
+            const eligibleMember = members.filter(member => parseInt(member.membership) >= 2);
+
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+
+            shuffleArray(eligibleMember);
+
+            const randomMember = eligibleMember.slice(0, 3);
+
+            randomMember.forEach(member => {
+                const card = createCompanySportlight(member);
+                gridContainer.appendChild(card);
+            });
+        }
+        
+    } catch (error) {
+        console.error('Erro ao carregar os dados:', error);
+    }
+}
+
+function createCompanySportlight(company) {
+    const card = document.createElement('section');
+    card.classList.add('sportlight-card');
+
+    const name = document.createElement('p');
+    name.textContent = `${company.name}`;
+    name.classList.add('sportlight-name');
+    card.appendChild(name);
+
+    const tagline = document.createElement('p');
+    tagline.textContent = `${company.tagline}`;
+    tagline.classList.add('sportlight-tagline');
+    card.appendChild(tagline);
+
+    const hr = document.createElement('hr')
+    card.appendChild(hr)
+
+    const icon = document.createElement('img');
+    icon.src = `images/companies_logos/${company.icon}`;
+    icon.alt = company.name;
+    card.appendChild(icon);
+
+    const email = document.createElement('p');
+    email.textContent = `Email: ${company.email}`;
+    email.classList.add('sportlight-email');
+    card.appendChild(email);
+    
+
+    const phone = document.createElement('p');
+    phone.textContent = `Phone: ${company.phone}`;
+    phone.classList.add('sportlight-phone');
+    card.appendChild(phone);
+
+    const website = document.createElement('a');
+    website.href = company.website;
+    website.target = '_blank';
+    website.textContent = company.website;
+    website.classList.add('sportlight-website');
+    card.appendChild(website);
+
+    return card;
+}
+
+// Call the function
+fetchAndDisplayClients();
 
 
 // Footer current year and moddification
