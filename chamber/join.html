@@ -35,30 +35,89 @@
         </nav>
     </header>
     <main>
-        <div class="positionHero">
-            <img class="hero" src="images/hero_image.jpg" alt="A man think about great opportunities.">
-            <button class="join">Join us</button>
-        </div>
-        <h1>Home</h1>
-        <div class="grid-weather">
-            <section class="events">
-                <h3>Events</h3>
-            </section>
-            <section class="current">
-                <h3>Current Weather</h3>
-                <img id="weatherIcon" alt="Weather Icon">
-                <div class="currentParagraphs">
+        <h1>Formulário de Cadastro</h1>
+        <form id="form" action="/send-data" method="get">
+            <!-- First name -->
+            <label for="firstName">Name*:</label>
+            <br>
+            <input type="text" id="firstName" name="firstName" required>
+            <br><br>
+            
+            <!-- Last name -->
+            <label for="lastName\">Last Name*:</label>
+            <br>
+            <input type="text" id="lastName" name="lastName" required>
+            <br><br>
+            
+            <!-- Organizational Title -->
+            <label for="applicantTitle">Organizational Title:</label>
+            <br>
+            <input type="text" id="applicantTitle" name="applicantTitle" list="titles" autocomplete="on">
+  
+            <datalist id="titles">
+            </datalist>
+            <br><br>
+            
+            <!-- Email Address-->
+            <label for="email">Email Address*:</label>
+            <br>
+            <input type="email" id="email" name="email" required>
+            <br><br>
 
-                </div>
-            </section>
-            <section class="forecast">
-                <h3>Weather Forecast</h3>
-                <div class="forecastParagraphs"></div>
-            </section>
-        </div>
-        <div>
-            <article class="spotlights"></article>
-        </div>
+            <!-- Phone-->
+            <label for="phone">Phone*:</label>
+            <br>
+            <input type="tel" id="phone" name="phone" required>
+            <br><br>
+            
+            <!-- Organization's Name -->
+            <label for="business">Organization's Name*:</label>
+            <br>
+            <input type="text" id="business" name="business" required>
+            <br><br><br>
+
+            <!-- Membership-->
+            <fieldset>
+                <legend>Select Your Membership Level:</legend>
+            
+                <label>
+                  <input type="radio" name="membership-level" value="np" required>
+                  NP Membership (Non-Profit - No Fee)
+                </label><br>
+            
+                <label>
+                  <input type="radio" name="membership-level" value="bronze">
+                  Bronze Membership
+                </label><br>
+            
+                <label>
+                  <input type="radio" name="membership-level" value="silver">
+                  Silver Membership
+                </label><br>
+            
+                <label>
+                  <input type="radio" name="membership-level" value="gold">
+                  Gold Membership
+                </label><br>
+            
+            </fieldset>
+            <br><br>
+
+            <!-- Description -->
+            <label for="description">Description*:</label>
+            <br>
+            <textarea id="description" name="description" required></textarea>
+            <br><br>
+
+            <!-- Time -->
+            <input type="hidden" name="timestamp" id="timestamp">  
+            <br>
+            
+            <!-- Botão de envio -->
+            <button type="submit" id="sendForm">
+                Send
+            </button>
+        </form>
     </main>
     <footer>
         <div>

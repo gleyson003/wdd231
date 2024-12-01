@@ -72,7 +72,7 @@ nav a {
 }
 
 
-/*Main*/
+/*directory page*/
 main {
     width: 80%;
 	margin: 0 auto;
@@ -181,7 +181,7 @@ article img {
 	max-width: 100%;
 }
 
-/*Index CSS*/
+/*HomePage CSS*/
 .positionHero {
     display: grid;    
     position: relative;
@@ -301,6 +301,120 @@ article img {
 
 .sportlight-website {
     margin-left: 50px;
+}
+
+/*Form CSS*/
+form {
+    background-color: rgb(158, 170, 187);
+    width: 100%;
+    padding: 30px 0 30px 30px;
+}
+
+form label {
+    font-size: 22px;
+}
+
+form input:required:invalid {
+    border: 1px solid red;
+}
+  
+form input:required:valid {
+    border: 2px solid green;
+}
+
+form textarea:required:invalid {
+    border: 1px solid red;
+}
+  
+form textarea:required:valid {
+    border: 2px solid green;
+}
+
+form input {
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+#firstName {
+    width: 95%;
+    height: 30px;
+}
+
+#lastName {
+    width: 95%;
+    height: 30px;
+}
+
+#applicantTitle {
+    width: 95%;
+    height: 30px;
+}
+
+#email {
+    width: 95%;
+    height: 30px;
+}
+
+#phone {
+    width: 95%;
+    height: 30px;
+}
+
+#business {
+    width: 95%;
+    height: 30px;
+}
+
+form fieldset {
+    width: 91.5%;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+fieldset legend {
+    font-size: 22px;
+}
+
+fieldset input {
+    margin: 10px 0 ;
+}
+
+#description {
+    width: 95%;
+    height: 100px;
+    border-radius: 5px;
+}
+
+#sendForm {
+    margin-left: 10vw;
+    margin-top: 20px;
+    text-align: center;
+    width: 70%;
+    padding: 10px;
+    border-radius: 30px;
+    border: 2px solid white;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+}
+
+#sendForm:hover {
+    background-color: var(--primary-color);
+    color: black;
+    border: 3px solid black;
+}
+
+
+/*Thanks CSS*/
+#thanks {
+    height: 600px;
+    text-align: center;
+}
+
+#thanks h1 {
+    margin-top: 250px;
+    align-items: center;
 }
 
 /*Footer*/

@@ -243,6 +243,19 @@ function createCompanySportlight(company) {
 fetchAndDisplayClients();
 
 
+//Thanks after the form submit
+document.getElementById('form')?.addEventListener('submit', function(event) {
+    event.preventDefault();
+  
+    // Check required fiels and ref to the thanksyou.html
+    if (this.checkValidity()) {
+      window.location.href = 'thankyou.html';
+    } else {
+      alert('Please, fill in all the required fields.');
+    }
+  });
+
+
 // Footer current year and moddification
 document.addEventListener('DOMContentLoaded', function() {
     let currentYear = new Date().getFullYear();
