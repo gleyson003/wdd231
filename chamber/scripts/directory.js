@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Close modal
-  closeModal.addEventListener("click", () => {
+  closeModal?.addEventListener("click", () => {
     modal.close();
   });
 
