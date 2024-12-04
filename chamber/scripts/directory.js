@@ -243,17 +243,103 @@ function createCompanySportlight(company) {
 fetchAndDisplayClients();
 
 
-//Thanks after the form submit
-document.getElementById('form')?.addEventListener('submit', function(event) {
-    event.preventDefault();
-  
-    // Check required fiels and ref to the thanksyou.html
-    if (this.checkValidity()) {
-      window.location.href = 'thankyou.html';
+//Modal card
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("membership-modal");
+  const card = document.getElementById("card");
+  const modalTitle = document.getElementById("modal-title");
+  const modalText = document.getElementById("modal-text");
+  const closeModal = document.getElementById("close-modal");
+  const infoButtons = document.querySelectorAll(".info-btn");
+
+  let membershipData = [];
+
+  // Fetch membership data from JSON
+  fetch("data/membership.json")
+    .then((response) => response.json())
+    .then((data) => {
+      membershipData = data;
+    })
+    .catch((error) => console.error("Error loading membership data:", error));
+
+  // Open modal with membership information
+  infoButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const level = button.getAttribute("data-level");
+      const membership = membershipData.find((item) => item.level === level);
+
+      if (membership) {
+        card.style.backgroundColor = membership.color;
+        card.textContent = membership.title;
+        modalTitle.textContent = membership.title;
+        modalText.textContent = membership.text;
+
+        // Check screen size and set modal background color
+        if (window.innerWidth <= 800) {
+          modal.style.backgroundColor = membership.color;
+        } else {
+          modal.style.backgroundColor = ""; // Reset if screen is larger
+        }
+
+        modal.showModal();
+      }
+    });
+  });
+
+  // Close modal
+  closeModal.addEventListener("click", () => {
+    modal.close();
+  });
+
+  // Adjust modal background on resize
+  window.addEventListener("resize", () => {
+    if (modal.open && window.innerWidth <= 950 && card.style.backgroundColor) {
+      modal.style.backgroundColor = card.style.backgroundColor;
     } else {
-      alert('Please, fill in all the required fields.');
+      modal.style.backgroundColor = "";
     }
   });
+});
+
+
+// Thanks after the form submit
+document.getElementById('form')?.addEventListener('submit', function(event) {
+    event.preventDefault(); // Previne o envio do formulário
+
+    // Get the form data
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const applicantTitle = document.getElementById('applicantTitle').value || 'Not informed';
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const business = document.getElementById('business').value;
+    const membershipLevel = document.querySelector('input[name="membership-level"]:checked') ? document.querySelector('input[name="membership-level"]:checked').value : 'N/A'; 
+    const description = document.getElementById('description').value;
+    const timestamp = new Date().toLocaleString('en-US', { timeZone: 'MST' }).replace(',', '').replace('/', '-').replace('/', '-');
+
+
+    // Creating the form Data
+    const formData = `
+        Name: ${firstName} ${lastName}<br>
+        Organizational Title: ${applicantTitle}<br>
+        Email: ${email}<br>
+        Phone: ${phone}<br>
+        Organization: ${business}<br>
+        Membership Level: ${membershipLevel}<br>
+        Description: ${description}<br>
+        Timestamp: ${timestamp}
+    `;
+
+    // Check all the form fields
+    if (this.checkValidity()) {
+        //localStorage
+        localStorage.setItem('formData', formData);
+        window.location.href = 'thankyou.html';
+    } else {
+        alert('Please, fill in all the required fields.');
+    }
+});
+
 
 
 // Footer current year and moddification

@@ -44,7 +44,7 @@
             <br><br>
             
             <!-- Last name -->
-            <label for="lastName\">Last Name*:</label>
+            <label for="lastName">Last Name*:</label>
             <br>
             <input type="text" id="lastName" name="lastName" required>
             <br><br>
@@ -53,11 +53,8 @@
             <label for="applicantTitle">Organizational Title:</label>
             <br>
             <input type="text" id="applicantTitle" name="applicantTitle" list="titles" autocomplete="on">
-  
-            <datalist id="titles">
-            </datalist>
             <br><br>
-            
+
             <!-- Email Address-->
             <label for="email">Email Address*:</label>
             <br>
@@ -79,29 +76,47 @@
             <!-- Membership-->
             <fieldset>
                 <legend>Select Your Membership Level:</legend>
-            
                 <label>
-                  <input type="radio" name="membership-level" value="np" required>
-                  NP Membership (Non-Profit - No Fee)
-                </label><br>
-            
+                    <input type="radio" name="membership-level" value="np" required>
+                    NP Membership (Non-Profit - No Fee)
+                </label>
+                <button type="button" class="info-btn" data-level="np">!</button>
+                <br>
+
                 <label>
-                  <input type="radio" name="membership-level" value="bronze">
-                  Bronze Membership
-                </label><br>
-            
+                    <input type="radio" name="membership-level" value="bronze">
+                    Bronze Membership
+                </label>
+                <button type="button" class="info-btn" data-level="bronze">!</button>
+                <br>
+
                 <label>
-                  <input type="radio" name="membership-level" value="silver">
-                  Silver Membership
-                </label><br>
-            
+                    <input type="radio" name="membership-level" value="silver">
+                    Silver Membership
+                </label>
+                <button type="button" class="info-btn" data-level="silver">!</button>
+                <br>
+
                 <label>
-                  <input type="radio" name="membership-level" value="gold">
-                  Gold Membership
-                </label><br>
-            
+                    <input type="radio" name="membership-level" value="gold">
+                    Gold Membership
+                </label>
+                <button type="button" class="info-btn" data-level="gold">!</button>
+                <br>
             </fieldset>
             <br><br>
+
+            <!-- Modal -->
+            <dialog id="membership-modal">
+                <div class="modal-content">
+                <div id="card"></div>
+                <div id="details">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-text"></p>
+                </div>
+                </div>
+                <button id="close-modal">Close</button>
+            </dialog>
 
             <!-- Description -->
             <label for="description">Description*:</label>

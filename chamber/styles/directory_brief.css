@@ -314,6 +314,12 @@ form label {
     font-size: 22px;
 }
 
+@media (max-width: 700px) {
+    form label {
+        font-size: 16px;
+    }
+}
+
 form input:required:invalid {
     border: 1px solid red;
 }
@@ -366,7 +372,7 @@ form input {
 }
 
 form fieldset {
-    width: 91.5%;
+    width: 93%;
     border-radius: 5px;
     border: 2px solid black;
 }
@@ -375,8 +381,91 @@ fieldset legend {
     font-size: 22px;
 }
 
+@media (max-width: 700px){
+    fieldset legend {
+        font-size: 16px;
+    }
+
+    form fieldset {
+        width: 88%;
+        border-radius: 5px;
+        border: 2px solid black;
+    }
+}
+
 fieldset input {
-    margin: 10px 0 ;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+fieldset button {
+    margin-left: 7px;
+}
+
+.info-btn {
+    background-color: #ccc;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+dialog {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 50%;
+}
+  
+.modal-content {
+    display: flex;
+    gap: 20px;
+}
+
+#card {
+    width: 220px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    margin: 7vh 5px 0 3vw;
+}
+
+@media (max-width: 950px) {
+    #card {
+      display: none;
+    }
+}
+
+#details {
+    flex: 1;
+    text-align: center;
+}
+
+#close-modal {
+    margin: 50px -10vw 0 12vw;
+    background-color: black;
+    text-align: center;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 50%;
+}
+
+#close-modal:hover {
+    background-color: var(--primary-color);
+    color: black;
+    border: 3px solid black;
 }
 
 #description {

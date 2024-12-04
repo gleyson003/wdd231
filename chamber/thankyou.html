@@ -36,7 +36,14 @@
     </header>
     <main id="thanks">
         <h1>Thank you for your subscrition!</h1>
+        <p id="formData"></p>
     </main>
+    <script>
+        const formData = localStorage.getItem('formData');
+        if (formData) {
+            document.getElementById('formData').innerHTML  = formData;
+        }
+    </script>
     <footer>
         <div>
             <p>
