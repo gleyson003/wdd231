@@ -1,6 +1,12 @@
 //Toggle Menu
-document.getElementById('menuToggle').addEventListener('click', function() {
-    document.getElementById('menu').classList.toggle('active');
+document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+
+    menuToggle.addEventListener('click', function () {
+        menu.classList.toggle('open'); // Alterna a classe 'open'
+        menuToggle.textContent = menu.classList.contains('open') ? '✖' : '☰'; // Altera o ícone
+    });
 });
 
 
@@ -93,8 +99,8 @@ async function fetchWeatherData() {
         // Get Current Weather
         const currentWeatherResponse = await fetch(currentWeatherUrl);
         const currentWeatherData = await currentWeatherResponse.json();
-        
-        // Save in variables
+
+        // Save data
         const maxTemp = Math.round(currentWeatherData.main.temp_max);
         const minTemp = Math.round(currentWeatherData.main.temp_min);
         const humidity = currentWeatherData.main.humidity;
@@ -103,58 +109,60 @@ async function fetchWeatherData() {
         const weatherIcon = currentWeatherData.weather[0].icon;
         const weatherIconUrl = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
 
-        //Set Weather Icon
-        document.getElementById('weatherIcon').src = weatherIconUrl;
-        
-        //Set weather informations
+        const weatherIconElement = document.getElementById('weatherIcon');
+        if (weatherIconElement) {
+            weatherIconElement.src = weatherIconUrl;
+        }
+
         const gridCurrent = document.querySelector('.currentParagraphs');
+        if (gridCurrent) {
+            const currentTemperature = document.createElement('p');
+            currentTemperature.textContent = `${Math.round(currentWeatherData.main.temp)} °C`;
+            const currentWeatherDescription = document.createElement('p');
+            currentWeatherDescription.textContent = currentWeatherData.weather[0].description;
 
-        const currentTemperature = document.createElement('p');
-        currentTemperature.textContent = `${Math.round(currentWeatherData.main.temp)} °C`;
-        const currentWeatherDescription = document.createElement('p');
-        currentWeatherDescription.textContent = currentWeatherData.weather[0].description;
+            const tempMax = document.createElement('p');
+            tempMax.textContent = `High: ${maxTemp} °C`;
+            const tempMin = document.createElement('p');
+            tempMin.textContent = `Low: ${minTemp} °C`;
 
-        const tempMax = document.createElement('p');
-        tempMax.textContent = `High: ${maxTemp} °C`;
-        const tempMin = document.createElement('p');
-        tempMin.textContent = `Low: ${minTemp} °C`;
+            const hum = document.createElement('p');
+            hum.textContent = `Humidity: ${humidity}%`;
+            const rise = document.createElement('p');
+            rise.textContent = `Sunrise: ${sunrise}`;
+            const set = document.createElement('p');
+            set.textContent = `Sunset: ${sunset}`;
 
-        const hum = document.createElement('p');
-        hum.textContent = `Humidity: ${humidity}%`;
-        const rise = document.createElement('p');
-        rise.textContent = `Sunrise: ${sunrise}`;
+            gridCurrent.appendChild(currentTemperature);
+            gridCurrent.appendChild(currentWeatherDescription);
+            gridCurrent.appendChild(tempMax);
+            gridCurrent.appendChild(tempMin);
+            gridCurrent.appendChild(hum);
+            gridCurrent.appendChild(rise);
+            gridCurrent.appendChild(set);
+        }
 
-        const set = document.createElement('p');
-        set.textContent = `Sunset: ${sunset}`;
-        
-        gridCurrent.appendChild(currentTemperature);
-        gridCurrent.appendChild(currentWeatherDescription);
-        gridCurrent.appendChild(tempMax);
-        gridCurrent.appendChild(tempMin);
-
-        gridCurrent.appendChild(hum);
-        gridCurrent.appendChild(rise);
-        gridCurrent.appendChild(set);
-        
-        // Next three days forecast
-        const forecastResponse = await fetch(forecastUrl);
-        const forecastData = await forecastResponse.json();
         const forecastParagraphs = document.querySelector('.forecastParagraphs');
-        const dailyForecasts = forecastData.list.filter((item, index) => index % 8 === 0).slice(0, 3);
+        if (forecastParagraphs) {
+            const forecastResponse = await fetch(forecastUrl);
+            const forecastData = await forecastResponse.json();
+            const dailyForecasts = forecastData.list.filter((item, index) => index % 8 === 0).slice(0, 3);
 
-        dailyForecasts.forEach((forecast, index) => {
-            const date = new Date(forecast.dt * 1000).toLocaleDateString('en-US', { weekday: 'long' });
-            const temp = Math.round(forecast.main.temp);
+            dailyForecasts.forEach((forecast, index) => {
+                const date = new Date(forecast.dt * 1000).toLocaleDateString('en-US', { weekday: 'long' });
+                const temp = Math.round(forecast.main.temp);
 
-            const setForecast = document.createElement('p');
-            setForecast.textContent = `${date}: ${temp}°C`;
+                const setForecast = document.createElement('p');
+                setForecast.textContent = `${date}: ${temp}°C`;
 
-            forecastParagraphs.appendChild(setForecast);
-        });
+                forecastParagraphs.appendChild(setForecast);
+            });
+        }
     } catch (error) {
         console.error("Error fetching weather data:", error);
     }
 }
+
 // Call the funtion
 fetchWeatherData();
 
@@ -252,6 +260,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModal = document.getElementById("close-modal");
   const infoButtons = document.querySelectorAll(".info-btn");
 
+  if (
+    !modal ||
+    !card ||
+    !modalTitle ||
+    !modalText ||
+    !closeModal ||
+    infoButtons.length === 0
+  ) {
+    return;
+  }
+
   let membershipData = [];
 
   // Fetch membership data from JSON
@@ -340,6 +359,70 @@ document.getElementById('form')?.addEventListener('submit', function(event) {
     }
 });
 
+
+// Show kiosk images
+const lazyImages = document.querySelector(".lazyImages");
+
+if (lazyImages) { // Verifica se o elemento existe
+    for (let i = 1; i < 9; i++) {
+        const img = document.createElement("img");
+        img.src = `images/kiosks/kiosk-${i}.jpg`;
+        img.alt = `Kiosk nº${i} image`;
+        img.loading = "lazy";
+
+        lazyImages.appendChild(img);
+    }
+} else {
+    console.warn("Elemente '.lazyImages' not founded. Images not added.");
+}
+
+// Welcome dialog modal
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('welcomeModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+
+    if (modal && closeModalBtn && welcomeMessage) {
+        // Function to calculate the days difference
+        function calculateDaysDifference(lastVisit) {
+            const now = new Date();
+            const lastVisitDate = new Date(lastVisit);
+            const differenceInTime = now - lastVisitDate;
+            return Math.floor(differenceInTime / (1000 * 60 * 60 * 24));
+        }
+
+        // Manage messages
+        const lastVisit = localStorage.getItem('lastVisit');
+        const now = new Date();
+
+        if (!lastVisit) {
+            welcomeMessage.textContent = "Welcome! Let us know if you have any questions.";
+        } else {
+            const daysSinceLastVisit = calculateDaysDifference(lastVisit);
+
+            if (daysSinceLastVisit < 1) {
+                welcomeMessage.textContent = "Back so soon! Awesome!";
+            } else if (daysSinceLastVisit === 1) {
+                welcomeMessage.textContent = `You last visited 1 day ago.`;
+            } else {
+                welcomeMessage.textContent = `You last visited ${daysSinceLastVisit} days ago.`;
+            }
+        }
+
+        // Update the last visit
+        localStorage.setItem('lastVisit', now.toISOString());
+
+        // Show modal
+        modal.showModal();
+
+        // Close modal
+        closeModalBtn.addEventListener('click', function () {
+            modal.close();
+        });
+    } else {
+        console.warn("Elementes from welcome modal not was founded at DOM.");
+    }
+});
 
 
 // Footer current year and moddification
