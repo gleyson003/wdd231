@@ -240,7 +240,7 @@ function createCompanySportlight(company) {
     const website = document.createElement('a');
     website.href = company.website;
     website.target = '_blank';
-    website.textContent = company.website;
+    website.textContent = "Learn More";
     website.classList.add('sportlight-website');
     card.appendChild(website);
 
