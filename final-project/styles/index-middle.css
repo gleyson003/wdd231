@@ -172,4 +172,23 @@
         font-size: 3vw;  /* Aumenta o tamanho da descrição */
         color: white;
     }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 5px;
+        height: 150px;
+        width: 50%;
+        text-align: center;
+        text-indent: 0;
+    }
+
+    #modalMessage {
+        margin: 40px 0 0 0;
+    }
+
+    .close {
+        font-size: 25px;
+    }
 }
