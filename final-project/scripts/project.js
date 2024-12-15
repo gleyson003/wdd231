@@ -24,22 +24,29 @@ function showModal() {
     const diasFaltantes = missingDays();
     const modalMessage = document.getElementById('modalMessage');
 
-    if (diasFaltantes > 0) {
-        modalMessage.textContent = `${diasFaltantes} days left until the start of COP-30`;
-    } else {
-        modalMessage.textContent = 'COP-30 has already taken place';
-    }
+    if (modalMessage) {
+        if (diasFaltantes > 0) {
+            modalMessage.textContent = `${diasFaltantes} days left until the start of COP-30`;
+        } else {
+            modalMessage.textContent = 'COP-30 has already taken place';
+        }
 
-    const modal = document.getElementById('myModal');
-    modal.style.display = 'block';
+        const modal = document.getElementById('myModal');
+        if (modal) {
+            modal.style.display = 'block';
+        }
+    } else {
+        console.error('Elemento modalMessage não encontrado no DOM');
+    }
 }
 
 // Close Modal
 function closeModal() {
     const modal = document.getElementById('myModal');
-    modal.style.display = 'none';
+    if (modal) {
+        modal.style.display = 'none';
+    }
 }
-
 
 
 //API Weather
@@ -186,5 +193,13 @@ document.addEventListener('DOMContentLoaded', function() {
 fetchWeatherData();
 window.onload = loadCardData;
 window.onload = function() {
-    showModal();
+    const fileName = getFileNameFromUrl();
+
+    if (fileName === 'index.html') { // Exibe o modal apenas na página inicial
+        showModal();
+    }
+
+    // Chama outras funções conforme necessário
+    fetchWeatherData();
+    loadCardData();
 };
