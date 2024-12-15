@@ -147,7 +147,6 @@ async function loadCardData() {
             jsonFile = 'data/attractions.json';
             imagesPath = 'images/attractions-images/';
         } else {
-            console.error('Arquivo desconhecido:', fileName);
             return;
         }
 
@@ -174,7 +173,7 @@ async function loadCardData() {
             container.appendChild(card);
         });
     } catch (error) {
-        console.error('Erro ao carregar o JSON:', error);
+        console.error('Error to load JSON:', error);
     }
 }
 
